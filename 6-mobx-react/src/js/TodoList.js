@@ -8,7 +8,7 @@ export default class TodoList extends React.Component {
     if (e.which === 13) {
       this.props.store.createTodo(e.target.value)
       e.target.value = ""
-    }
+    } 
   }
 
   filter(e) {
@@ -16,24 +16,25 @@ export default class TodoList extends React.Component {
   }
 
   toggleComplete(todo) {
-    todo.complete = !todo.complete
+    todo.complete =!todo.complete
   }
 
-  render() {
+  render(){
     const { clearComplete, filter, filteredTodos, todos } = this.props.store
 
     const todoLis = filteredTodos.map(todo => (
       <li key={todo.id}>
-       <input type="checkbox" onChange={this.toggleComplete.bind(this, todo)} value={todo.complete} checked={todo.complete} />
-       <span>{todo.value}</span>
+        <input type="checkbox" onChange={this.toggleComplete.bind(this, todo)} value={todo.complete} checked={todo.complete} />
+        {todo.value}
       </li>
     ))
     return <div>
-      <h1>todos</h1>
-      <input className="new" onKeyPress={this.createNew.bind(this)} />
+      <h1>Todos List</h1>
+      <h2>MobX</h2>
+      <input className="create" onKeyPress={this.createNew.bind(this)} />
       <input className="filter" value={filter} onChange={this.filter.bind(this)} />
       <ul>{todoLis}</ul>
-      <a href="#" onClick={clearComplete}>Clear Complete</a>
+      <button><a href="#" onClick={clearComplete}> Clear Complete </a></button>
     </div>
   }
 }
